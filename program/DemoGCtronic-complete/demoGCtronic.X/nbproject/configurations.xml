@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>../Asercom.h</itemPath>
+      <itemPath>../common.inc</itemPath>
+      <itemPath>../DataEEPROM.h</itemPath>
+      <itemPath>../memory.h</itemPath>
+      <itemPath>../runaccelerometer.h</itemPath>
+      <itemPath>../runbreitenberg_adv.h</itemPath>
+      <itemPath>../rungrounddirection.h</itemPath>
+      <itemPath>../runshow.h</itemPath>
+      <itemPath>../runwallfollow.h</itemPath>
+      <itemPath>../translatorI2C.h</itemPath>
+      <itemPath>../rungyroscope.h</itemPath>
+      <itemPath>../runsquare.h</itemPath>
+      <itemPath>../rundetectsound.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="LinkerScript"
+                   displayName="Linker Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>../Asercom.c</itemPath>
+      <itemPath>../DataEEPROM.s</itemPath>
+      <itemPath>../main_c.c</itemPath>
+      <itemPath>../runaccelerometer.c</itemPath>
+      <itemPath>../runbreitenberg_adv.c</itemPath>
+      <itemPath>../rungrounddirection.c</itemPath>
+      <itemPath>../runshow.c</itemPath>
+      <itemPath>../runwallfollow.c</itemPath>
+      <itemPath>../translatorI2C.c</itemPath>
+      <itemPath>../../../library/motor_led/advance_one_timer/e_led.c</itemPath>
+      <itemPath>../../../library/motor_led/advance_one_timer/e_motors.c</itemPath>
+      <itemPath>../../../library/a_d/advance_ad_scan/e_ad_conv.c</itemPath>
+      <itemPath>../../../library/utility/utility.c</itemPath>
+      <itemPath>../../../library/I2C/e_I2C_master_module.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_common.c</itemPath>
+      <itemPath>../../../library/a_d/advance_ad_scan/e_acc.c</itemPath>
+      <itemPath>../../../library/uart/e_uart1_tx_char.s</itemPath>
+      <itemPath>../../../library/uart/e_uart2_tx_char.s</itemPath>
+      <itemPath>../../../library/uart/e_uart2_rx_char.s</itemPath>
+      <itemPath>../../../library/uart/e_uart1_rx_char.s</itemPath>
+      <itemPath>../../../library/motor_led/advance_one_timer/e_remote_control.c</itemPath>
+      <itemPath>../../../library/motor_led/e_init_port.c</itemPath>
+      <itemPath>../../../library/motor_led/advance_one_timer/e_agenda.c</itemPath>
+      <itemPath>../../../library/I2C/e_I2C_protocol.c</itemPath>
+      <itemPath>../../../library/a_d/advance_ad_scan/e_prox.c</itemPath>
+      <itemPath>../../../library/codec/e_sound.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_po6030k_registers.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_po3030k_registers.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_po8030d_registers.c</itemPath>
+      <itemPath>../../../library/codec/e_sub_dci_kickoff.s</itemPath>
+      <itemPath>../../../library/codec/e_init_dci_master.s</itemPath>
+      <itemPath>../../../library/codec/e_init_codec_slave.s</itemPath>
+      <itemPath>../../../library/a_d/advance_ad_scan/e_micro.c</itemPath>
+      <itemPath>../../../library/bluetooth/e_bluetooth.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_calc_po3030k.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_calc_po6030k.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_calc_po8030d.c</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_timers.c</itemPath>
+      <itemPath>../../../library/uart/e_init_uart1.s</itemPath>
+      <itemPath>../../../library/uart/e_init_uart2.s</itemPath>
+      <itemPath>../../../library/codec/e_const_sound.s</itemPath>
+      <itemPath>../../../library/codec/e_isr_dci.s</itemPath>
+      <itemPath>../../../library/camera/fast_2_timer/e_interrupt.s</itemPath>
+      <itemPath>../../../library/acc_gyro/e_lsm330.c</itemPath>
+      <itemPath>../rungyroscope.c</itemPath>
+      <itemPath>../runsquare.c</itemPath>
+      <itemPath>../rundetectsound.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>../</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="default" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>dsPIC30F6014A</targetDevice>
+        <targetHeader></targetHeader>
+        <targetPluginBoard></targetPluginBoard>
+        <platformTool>ICD3PlatformTool</platformTool>
+        <languageToolchain>C30</languageToolchain>
+        <languageToolchainVersion>3_30b</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+        <archiverTool>
+        </archiverTool>
+        <loading>
+          <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <parseOnProdLoad>false</parseOnProdLoad>
+          <alternateLoadableFile></alternateLoadableFile>
+        </loading>
+      </compileType>
+      <makeCustomizationType>
+        <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeCustomizationPreStep></makeCustomizationPreStep>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
+        <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
+        <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
+      </makeCustomizationType>
+      <C30>
+        <property key="code-model" value="large-code"/>
+        <property key="const-model" value="default"/>
+        <property key="data-model" value="large-data"/>
+        <property key="enable-all-warnings" value="true"/>
+        <property key="enable-ansi-std" value="false"/>
+        <property key="enable-ansi-warnings" value="false"/>
+        <property key="enable-fatal-warnings" value="false"/>
+        <property key="enable-large-arrays" value="false"/>
+        <property key="enable-omit-frame-pointer" value="false"/>
+        <property key="enable-procedural-abstraction" value="false"/>
+        <property key="enable-short-double" value="false"/>
+        <property key="enable-symbols" value="true"/>
+        <property key="enable-unroll-loops" value="false"/>
+        <property key="extra-include-directories" value="../../../library;..;../uart"/>
+        <property key="isolate-each-function" value="false"/>
+        <property key="optimization-level" value="0"/>
+        <property key="post-instruction-scheduling" value="default"/>
+        <property key="pre-instruction-scheduling" value="default"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="scalar-model" value="default"/>
+      </C30>
+      <C30-AS>
+        <property key="assembler-symbols" value=""/>
+        <property key="expand-macros" value="false"/>
+        <property key="extra-include-directories-for-assembler"
+                  value="..;..\..\..\library;..\..\..\library\uart;..\..\..\library\codec"/>
+        <property key="extra-include-directories-for-preprocessor" value=""/>
+        <property key="false-conditionals" value="false"/>
+        <property key="keep-locals" value="false"/>
+        <property key="list-assembly" value="false"/>
+        <property key="list-section-info" value="false"/>
+        <property key="list-source" value="false"/>
+        <property key="list-symbols" value="false"/>
+        <property key="oXC16asm-list-to-file" value="false"/>
+        <property key="omit-debug-dirs" value="false"/>
+        <property key="omit-forms" value="false"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="relax" value="false"/>
+        <property key="warning-level" value="emit-warnings"/>
+      </C30-AS>
+      <C30-LD>
+        <property key="boot-eeprom" value="no_eeprom"/>
+        <property key="boot-flash" value="no_flash"/>
+        <property key="boot-ram" value="no_ram"/>
+        <property key="boot-write-protect" value="no_write_protect"/>
+        <property key="enable-check-sections" value="false"/>
+        <property key="enable-data-init" value="true"/>
+        <property key="enable-default-isr" value="true"/>
+        <property key="enable-handles" value="true"/>
+        <property key="enable-pack-data" value="true"/>
+        <property key="extra-lib-directories"
+                  value="C:\Program Files\Microchip\MPLAB C30\lib;C:\Program Files (x86)\Microchip\MPLAB C30\support\dsPIC30F\gld"/>
+        <property key="general-code-protect" value="no_code_protect"/>
+        <property key="general-write-protect" value="no_write_protect"/>
+        <property key="generate-cross-reference-file" value="false"/>
+        <property key="heap-size" value="128"/>
+        <property key="input-libraries" value=""/>
+        <property key="linker-symbols" value=""/>
+        <property key="map-file" value="&quot;${DISTDIR}/demoGCtronic.X.${IMAGE_TYPE}.map&quot;"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="remove-unused-sections" value="false"/>
+        <property key="report-memory-usage" value="true"/>
+        <property key="secure-eeprom" value="no_eeprom"/>
+        <property key="secure-flash" value="no_flash"/>
+        <property key="secure-ram" value="no_ram"/>
+        <property key="secure-write-protect" value="no_write_protect"/>
+        <property key="stack-size" value="500"/>
+        <property key="symbol-stripping" value=""/>
+        <property key="trace-symbols" value=""/>
+        <property key="warn-section-align" value="false"/>
+      </C30-LD>
+      <C30Global>
+        <property key="fast-math" value="false"/>
+        <property key="legacy-libc" value="false"/>
+        <property key="output-file-format" value="elf"/>
+      </C30Global>
+      <ICD3PlatformTool>
+        <property key="ADC" value="true"/>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="DCI" value="true"/>
+        <property key="I2C" value="true"/>
+        <property key="INPUT CAPTURE 1" value="true"/>
+        <property key="INPUT CAPTURE 2" value="true"/>
+        <property key="INPUT CAPTURE 3" value="true"/>
+        <property key="INPUT CAPTURE 4" value="true"/>
+        <property key="INPUT CAPTURE 5" value="true"/>
+        <property key="INPUT CAPTURE 6" value="true"/>
+        <property key="INPUT CAPTURE 7" value="true"/>
+        <property key="INPUT CAPTURE 8" value="true"/>
+        <property key="OUTPUT COMPARE 1" value="true"/>
+        <property key="OUTPUT COMPARE 2" value="true"/>
+        <property key="OUTPUT COMPARE 3" value="true"/>
+        <property key="OUTPUT COMPARE 4" value="true"/>
+        <property key="OUTPUT COMPARE 5" value="true"/>
+        <property key="OUTPUT COMPARE 6" value="true"/>
+        <property key="OUTPUT COMPARE 7" value="true"/>
+        <property key="OUTPUT COMPARE 8" value="true"/>
+        <property key="SPI 1" value="true"/>
+        <property key="SPI 2" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="TIMER1" value="true"/>
+        <property key="TIMER2" value="true"/>
+        <property key="TIMER3" value="true"/>
+        <property key="TIMER4" value="true"/>
+        <property key="TIMER5" value="true"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="UART 1" value="true"/>
+        <property key="UART 2" value="true"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="hwtoolclock.frcindebug" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="false"/>
+        <property key="memories.configurationmemory" value="false"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.end"
+                  value="${memories.instruction.ram.end.value}"/>
+        <property key="memories.instruction.ram.start"
+                  value="${memories.instruction.ram.start.value}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.end" value="0x17fff"/>
+        <property key="memories.programmemory.partition2" value="true"/>
+        <property key="memories.programmemory.partition2.end"
+                  value="${memories.programmemory.partition2.end.value}"/>
+        <property key="memories.programmemory.partition2.start"
+                  value="${memories.programmemory.partition2.start.value}"/>
+        <property key="memories.programmemory.start" value="0x0"/>
+        <property key="poweroptions.powerenable" value="true"/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogramrange.end" value="0x17fff"/>
+        <property key="programoptions.preserveprogramrange.start" value="0x0"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="programoptions.usehighvoltageonmclr" value="false"/>
+        <property key="programoptions.uselvpprogramming" value="false"/>
+        <property key="voltagevalue" value="3.25"/>
+      </ICD3PlatformTool>
+    </conf>
+  </confs>
+</configurationDescriptor>
