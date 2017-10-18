@@ -8,8 +8,8 @@
 #include "../../I2C/e_I2C_protocol.h"
 #include "../../motor_led/e_init_port.h"
 
-#define 	ARRAY_ORIGINE_X	68
-#define		ARRAY_ORIGINE_Y 4
+#define 	ARRAY_ORIGINE_X	0 //68
+#define		ARRAY_ORIGINE_Y 0 //4
 
 #define IRQ_PIX_LAT 1
 
@@ -37,6 +37,14 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 	int real_zoom_h, real_zoom_w;
 	int zoom_sample;
 	int sampl_mode;
+
+	unsigned int x1 = 0, y1 = 0;
+	unsigned int x2 = sensor_x1 + sensor_width - 1;
+	unsigned int y2 = sensor_y1 + sensor_height - 1;
+	unsigned int auto_cw_x1 = 0, auto_cw_x2 = 0;
+	unsigned int auto_cw_y1 = 0, auto_cw_y2 = 0;
+	unsigned int scale_th;
+	float scale_th_f;
 
 	sensor_x1 += ARRAY_ORIGINE_X;
 	sensor_y1 += ARRAY_ORIGINE_Y;
@@ -68,6 +76,16 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 			sensor_y1 -= 4;
 			/* We need Hsync some time before the first effective pixel */
 			sensor_x1 -= IRQ_PIX_LAT*4;
+
+			x1 = sensor_x1/4 + 1;
+			x2 = sensor_x1 + (sensor_width/4) - 1;
+			auto_cw_x1 = sensor_x1 + (sensor_width/12);
+			auto_cw_x2 = sensor_x1 + (sensor_width*2/12);			
+			y1 = sensor_y1/4 + 1;
+			y2 = sensor_y1 + (sensor_height/4) - 1;
+			auto_cw_y1 = sensor_y1 + (sensor_height/12);
+			auto_cw_y2 = sensor_y1 + (sensor_height*2/12);
+
 		} else {
 			if(!(zoom_fact_width%2)) {
 				sampl_mode = PO_8030_MODE_QVGA;
@@ -76,6 +94,16 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 				real_zoom_w = zoom_fact_width >> 1;
 				sensor_y1 -= 2;
 				sensor_x1 -= 2*IRQ_PIX_LAT;
+
+				x1 = sensor_x1/2 + 1;
+				x2 = sensor_x1 + (sensor_width/2) - 1;
+				auto_cw_x1 = sensor_x1 + (sensor_width/6);
+				auto_cw_x2 = sensor_x1 + (sensor_width*2/6);
+				y1 = sensor_y1/2 + 1;
+				y2 = sensor_y1 + (sensor_height/2) - 1;
+				auto_cw_y1 = sensor_y1 + (sensor_height/6);
+				auto_cw_y2 = sensor_y1 + (sensor_height*2/6);
+
 			} else {
 				sampl_mode = PO_8030_MODE_VGA;
 				zoom_sample = 1;
@@ -83,6 +111,16 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 				real_zoom_w = zoom_fact_width;
 				sensor_y1--;
 				sensor_x1 -= IRQ_PIX_LAT;
+				
+				x1 = sensor_x1;
+				x2 = sensor_x1 + sensor_width - 1;
+				auto_cw_x1 = sensor_x1 + (sensor_width/3);
+				auto_cw_x2 = sensor_x1 + (sensor_width*2/3);
+				y1 = sensor_y1;
+				y2 = sensor_y1 + sensor_height - 1;
+				auto_cw_y1 = sensor_y1 + (sensor_height/3);
+				auto_cw_y2 = sensor_y1 + (sensor_height*2/3);
+
 			}
 		}
 	} else if(!(zoom_fact_height%2)) {
@@ -93,6 +131,16 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 			real_zoom_w = zoom_fact_width >> 1;
 			sensor_y1 -= 2;
 			sensor_x1 -= 2*IRQ_PIX_LAT;
+
+			x1 = sensor_x1/2 + 1;
+			x2 = sensor_x1 + (sensor_width/2) - 1;
+			auto_cw_x1 = sensor_x1 + (sensor_width/6);
+			auto_cw_x2 = sensor_x1 + (sensor_width*2/6);
+			y1 = sensor_y1/2 + 1;
+			y2 = sensor_y1 + (sensor_height/2) - 1;
+			auto_cw_y1 = sensor_y1 + (sensor_height/6);
+			auto_cw_y2 = sensor_y1 + (sensor_height*2/6);
+
 		} else {
 			sampl_mode = PO_8030_MODE_VGA;
 			zoom_sample = 1;
@@ -100,6 +148,16 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 			real_zoom_w = zoom_fact_width;
 			sensor_y1--;
 			sensor_x1 -= IRQ_PIX_LAT;
+
+			x1 = sensor_x1;
+			x2 = sensor_x1 + sensor_width - 1;
+			auto_cw_x1 = sensor_x1 + (sensor_width/3);
+			auto_cw_x2 = sensor_x1 + (sensor_width*2/3);
+			y1 = sensor_y1;
+			y2 = sensor_y1 + sensor_height - 1;
+			auto_cw_y1 = sensor_y1 + (sensor_height/3);
+			auto_cw_y2 = sensor_y1 + (sensor_height*2/3);
+
 		}
 	} else {
 		zoom_sample = 1;
@@ -108,6 +166,16 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 		real_zoom_h = zoom_fact_height;
 		sensor_y1--;
 		sensor_x1 -= IRQ_PIX_LAT;
+
+		x1 = sensor_x1;
+		x2 = sensor_x1 + sensor_width - 1;
+		auto_cw_x1 = sensor_x1 + (sensor_width/3);
+		auto_cw_x2 = sensor_x1 + (sensor_width*2/3);
+		y1 = sensor_y1;
+		y2 = sensor_y1 + sensor_height - 1;
+		auto_cw_y1 = sensor_y1 + (sensor_height/3);
+		auto_cw_y2 = sensor_y1 + (sensor_height*2/3);
+
 	}
 	pbp_w = real_zoom_w - 1;
 	pbp_h = real_zoom_h - 1;
@@ -116,15 +184,41 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 	nb_lines = sensor_height/ zoom_fact_height;
 
 	/* set camera configuration */
-
-	if(e_po8030d_set_wx(sensor_x1 /zoom_sample,(ARRAY_ORIGINE_X + ARRAY_WIDTH + 1)/zoom_sample))
+	//if(e_po8030d_set_wx(sensor_x1 /zoom_sample,(ARRAY_ORIGINE_X + ARRAY_WIDTH + 1)/zoom_sample))
+	if(e_po8030d_set_wx(x1, x2))
 		return 6;
 
-	if(e_po8030d_set_wy(sensor_y1 /zoom_sample,(ARRAY_ORIGINE_Y + ARRAY_HEIGHT + 1)/zoom_sample))
+	//if(e_po8030d_set_wy(sensor_y1 /zoom_sample,(ARRAY_ORIGINE_Y + ARRAY_HEIGHT + 1)/zoom_sample))
+	if(e_po8030d_set_wy(y1, y2))
 		return 7;
 
-	if(e_po8030d_set_vsync(sensor_y1,ARRAY_ORIGINE_Y + ARRAY_HEIGHT))
-		return 8;
+	//if(e_po8030d_set_vsync(sensor_y1,ARRAY_ORIGINE_Y + ARRAY_HEIGHT))
+	//	return 8;
+	if(color_mode == GREY_SCALE_MODE) {
+		e_po8030d_write_register(BANK_A, 0x11, 0x03);
+	} else {
+		e_po8030d_write_register(BANK_A, 0x11, 0x0A);
+	}
+
+	// AE full window selection.
+    e_po8030d_write_register(BANK_A, 0x35, (x1>>8));
+    e_po8030d_write_register(BANK_A, 0x36, (x1&0xFF));
+    e_po8030d_write_register(BANK_A, 0x37, (x2>>8));
+    e_po8030d_write_register(BANK_A, 0x38, (x2&0xFF));
+    e_po8030d_write_register(BANK_A, 0x39, (y1>>8));
+    e_po8030d_write_register(BANK_A, 0x3A, (y1&0xFF));
+    e_po8030d_write_register(BANK_A, 0x3B, (y2>>8));
+    e_po8030d_write_register(BANK_A, 0x3C, (y2&0xFF));
+
+	// AE center window selection.
+    e_po8030d_write_register(BANK_A, 0x3D, (auto_cw_x1>>8));
+    e_po8030d_write_register(BANK_A, 0x3E, (auto_cw_x1&0xFF));
+    e_po8030d_write_register(BANK_A, 0x3F, (auto_cw_x2>>8));
+    e_po8030d_write_register(BANK_A, 0x40, (auto_cw_x2&0xFF));
+    e_po8030d_write_register(BANK_A, 0x41, (auto_cw_y1>>8));
+    e_po8030d_write_register(BANK_A, 0x42, (auto_cw_y1&0xFF));
+    e_po8030d_write_register(BANK_A, 0x43, (auto_cw_y2>>8));
+    e_po8030d_write_register(BANK_A, 0x44, (auto_cw_y2&0xFF));
 
 	if(color_mode == GREY_SCALE_MODE) {
 		switch (sampl_mode) {
@@ -132,10 +226,10 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 				e_po8030d_set_speed(PO_8030_SPEED_4);
 				break;
 			case PO_8030_MODE_QVGA:
-				e_po8030d_set_speed(PO_8030_SPEED_2);
+				e_po8030d_set_speed(PO_8030_SPEED_4);
 				break;
 			case PO_8030_MODE_QQVGA:
-				e_po8030d_set_speed(PO_8030_SPEED_1);
+				e_po8030d_set_speed(PO_8030_SPEED_4);
 				break;
 		}
 	} else {
@@ -144,10 +238,10 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 				e_po8030d_set_speed(PO_8030_SPEED_8);
 				break;
 			case PO_8030_MODE_QVGA:
-				e_po8030d_set_speed(PO_8030_SPEED_4);
+				e_po8030d_set_speed(PO_8030_SPEED_8);
 				break;
 			case PO_8030_MODE_QQVGA:
-				e_po8030d_set_speed(PO_8030_SPEED_2);
+				e_po8030d_set_speed(PO_8030_SPEED_8);
 				break;
 			}
 	}
@@ -155,6 +249,15 @@ int e_po8030d_config_cam(unsigned int sensor_x1,unsigned int sensor_y1,
 	if(e_po8030d_set_mode(color_mode, sampl_mode))
 		return 9;
 
+	if(color_mode == GREY_SCALE_MODE) {
+		scale_th_f = (648.0-(float)(x2-x1))*((float)(x2-x1)+8.0)/(656.0);
+		scale_th = (unsigned int)scale_th_f;
+	} else {
+		scale_th_f = ((648.0-(float)(x2-x1))*2.0)*((float)(x2-x1)*2.0+8.0)/(1304.0);
+		scale_th = (unsigned int)scale_th_f;
+	}
+	e_po8030d_write_register(BANK_B, 0x95, (scale_th>>8));
+	e_po8030d_write_register(BANK_B, 0x96, (scale_th&0xFF));
 
 	/* set timer configuration */
 	if(e_poxxxx_apply_timer_config(nb_lines,nb_pixels,e_po8030d_get_bytes_per_pixel(color_mode),pbp_w,pbp_h))

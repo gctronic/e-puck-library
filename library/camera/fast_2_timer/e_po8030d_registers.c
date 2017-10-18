@@ -89,7 +89,9 @@ int init_po8030() {
     unsigned char ret = 0;
     //unsigned long exposure = 0;
 
-    ret = enablePO8030();
+    //ret = enablePO8030();
+	e_po8030d_write_register(BANK_A, 0x5B, 0x00);
+	
     //e_po8030d_set_awb_ae(1, 0);
     //exposure = ((unsigned long)0x00<<24)|((unsigned long)0x08<<16)|(0x00<<8)|0x00;
     //e_po8030d_set_exposure(exposure);
@@ -119,17 +121,17 @@ void e_po8030d_set_pclkdiv(unsigned char div) {
 static int e_po8030d_set_sampl_gray(unsigned char sample) {
     switch (sample) {
         case PO_8030_MODE_VGA:
-            e_po8030d_set_pclkdiv(1);
+            e_po8030d_set_pclkdiv(1); // As specified in the application note V01.
             e_po8030d_write_register(BANK_B, 0x93, sample); /* Scale X*/
             e_po8030d_write_register(BANK_B, 0x94, sample); /* Scale Y*/
             return 0;
         case PO_8030_MODE_QVGA:
-            e_po8030d_set_pclkdiv(3);
+			e_po8030d_set_pclkdiv(1); // As specified in the application note V01.
             e_po8030d_write_register(BANK_B, 0x93, sample); /* Scale X*/
             e_po8030d_write_register(BANK_B, 0x94, sample); /* Scale Y*/
             return 0;
         case PO_8030_MODE_QQVGA:
-            e_po8030d_set_pclkdiv(7);
+			e_po8030d_set_pclkdiv(1); // As specified in the application note V01.
             e_po8030d_write_register(BANK_B, 0x93, sample); /* Scale X*/
             e_po8030d_write_register(BANK_B, 0x94, sample); /* Scale Y*/
             return 0;
@@ -140,17 +142,17 @@ static int e_po8030d_set_sampl_gray(unsigned char sample) {
 static int e_po8030d_set_sampl_color(unsigned char sample) {
     switch (sample) {
         case PO_8030_MODE_VGA:
-            e_po8030d_set_pclkdiv(0);
+            e_po8030d_set_pclkdiv(0); // As specified in the application note V01.
             e_po8030d_write_register(BANK_B, 0x93, sample); /* Scale X*/
             e_po8030d_write_register(BANK_B, 0x94, sample); /* Scale Y*/
             return 0;
         case PO_8030_MODE_QVGA:
-            e_po8030d_set_pclkdiv(1);
+			e_po8030d_set_pclkdiv(0); // As specified in the application note V01.
             e_po8030d_write_register(BANK_B, 0x93, sample); /* Scale X*/
             e_po8030d_write_register(BANK_B, 0x94, sample); /* Scale Y*/
             return 0;
         case PO_8030_MODE_QQVGA:
-            e_po8030d_set_pclkdiv(3);
+			e_po8030d_set_pclkdiv(0); // As specified in the application note V01.
             e_po8030d_write_register(BANK_B, 0x93, sample); /* Scale X*/
             e_po8030d_write_register(BANK_B, 0x94, sample); /* Scale Y*/
             return 0;
@@ -201,8 +203,8 @@ int e_po8030d_set_wx(unsigned int start, unsigned int stop) {
     e_po8030d_write_register(BANK_A, 0x09, start_l);
     e_po8030d_write_register(BANK_A, 0x08, start_h);
 
-    //	e_po8030d_write_register(BANK_A, 0x0C, stop_h);
-    //	e_po8030d_write_register(BANK_A, 0x0D, stop_l);
+    e_po8030d_write_register(BANK_A, 0x0C, stop_h);
+    e_po8030d_write_register(BANK_A, 0x0D, stop_l);
 
     return 0;
 }
@@ -228,8 +230,8 @@ int e_po8030d_set_wy(unsigned int start, unsigned int stop) {
     e_po8030d_write_register(BANK_A, 0x0A, start_h);
     e_po8030d_write_register(BANK_A, 0x0B, start_l);
 
-    //	e_po8030d_write_register(BANK_A, 0x0E, stop_h);
-    //	e_po8030d_write_register(BANK_A, 0x0F, stop_l);
+    e_po8030d_write_register(BANK_A, 0x0E, stop_h);
+    e_po8030d_write_register(BANK_A, 0x0F, stop_l);
 
     return 0;
 }
